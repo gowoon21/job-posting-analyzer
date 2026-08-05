@@ -46,6 +46,8 @@ README가 없으면 포트폴리오 프로젝트가 아니고, README가 있으�
 커밋:
 docs: create initial README
 
+Day 3 시작!
+
 <수요일>
 목표: 채용 사이트 분석
 
