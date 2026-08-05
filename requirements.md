@@ -19,17 +19,17 @@ Analyze IT job postings from multiple job sites and identify frequently requeste
 
 | Item | Collect |
 |------|---------|
-| Source | [x] |
-| Company Name | [x] |
-| Job Title | [x] |
-| Skills / Tech Stack | [x] |
-| Experience | [x] |
-| Education | [x] |
-| Location | [x] |
-| Employment Type | [x] |
-| Posted Data | [x] |
-| Deadline | [x] |
-| Job URL | [x] |
+| Source | ✅ |
+| Company Name | ✅ |
+| Job Title | ✅ |
+| Skills / Tech Stack | ✅ |
+| Experience | ✅ |
+| Education | ✅ |
+| Location | ✅ |
+| Employment Type | ✅ |
+| Posted Data | ✅ |
+| Deadline | ✅ |
+| Job URL | ✅ |
 
 ---
 
