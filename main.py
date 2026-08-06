@@ -9,6 +9,5 @@ def main():
     parse_job_posting()
 
 
-
 if __name__ == "__main__":
     main()
