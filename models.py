@@ -9,5 +9,5 @@ class JobPosting:           #채용공고 설계도
     experience: str         #경력
     education: str          #학력
     salary: str             #급여
-    tech_stacks: list[str] = field(default_factory=list)        #기술 스택
+    tech_stacks: list[str] = field(default_factory=list)                    #기술 스택
     preferred_qualifications: list[str] = field(default_factory=list)       #우대사항
