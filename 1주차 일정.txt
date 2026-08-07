@@ -93,6 +93,9 @@ link
 
 feat: implement initial crawler
 
+
+
+Day 5 시작!
 <금요일>
 목표: 여러 개 가져오기
 
