@@ -1,5 +1,5 @@
-from models import JobPosting
-from crawler import get_job_info
+from .models import JobPosting
+from .crawler import get_job_info
 
 
 def parse_job_posting():

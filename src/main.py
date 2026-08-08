@@ -1,15 +1,11 @@
-# def main():
-#     print("=== Job Posting Analyzer ===")
-#     print("프로젝트가 정상적으로 실행됩니다.")
+from .parser import parse_job_posting
+#.을 붙이는 이유는 같은 src 패키지 안의 parser.py를 불러오겠다는 뜻
 
-# if __name__ == "__main__" :
-#     main()
-
-from analyzer import analyze
 
 def main():
-    print("Program Start")
-    analyze()
+    posting = parse_job_posting()
+    print(posting)
+
 
 if __name__ == "__main__":
     main()
