@@ -111,6 +111,8 @@ for job in jobs:
 커밋:
 feat: collect multiple job postings
 
+
+Day 6 시작!
 <토요일>
 목표: 데이터 정리
 
