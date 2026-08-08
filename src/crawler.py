@@ -19,8 +19,7 @@ def get_job_info(url):
         job_title = "직무명 없음"
 
     
-    location_text = soup.find(string=lambda text: text and "Technical Success - Seoul, South Korea" in text)
-    # 텍스트 중에 "Seoul"이 들어간 첫 번째 문자열을 찾는 방식
+    location_text = soup.find(string=lambda text: text and "Seoul, South Korea" in text)
     # find_all() : 조건에 맞는 모든 요소를 찾음
     
 
