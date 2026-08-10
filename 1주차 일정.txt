@@ -112,7 +112,6 @@ for job in jobs:
 feat: collect multiple job postings
 
 
-Day 6 시작!
 <토요일>
 목표: 데이터 정리
 
@@ -128,6 +127,7 @@ Day 6 시작!
 커밋:
 refactor: organize crawling data structure
 
+“Day 7 시작!”
 <일요일>
 목표: 회고 및 리팩터링
 변수명 수정
