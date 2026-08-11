@@ -1,43 +1,68 @@
-import requests   #requests 파일 사용
-from bs4 import BeautifulSoup   #bs4 패키지 안에 있는 BeautifulSoup 사용하겠다
+import requests   # requests 파일 사용
+from bs4 import BeautifulSoup   # bs4 패키지 안에 있는 BeautifulSoup 사용
+
 
 def get_job_info(url):
-    response = requests.get(url)
-    # requests.get(url) : 해당 url에 get 요청을 보내는 코드
+    # 브라우저에서 접속하는 것처럼 User-Agent 정보를 함께 보냄
+    headers = {
+        "User-Agent": "Mozilla/5.0"
+    }
+
+    # URL에 GET 요청을 보내 HTML을 받아옴
+    response = requests.get(url, headers=headers)
+    # 요청에 문제가 있으면 오류 발생
     response.raise_for_status()
-    # 결과가 정상이 아니면 python에게 요청에 문제가 있다고 오류를 발생시키는 기능
 
+    # 받아온 HTML을 BeautifulSoup으로 분석
     soup = BeautifulSoup(response.text, "html.parser")
-    # response.text : 서버에서 받은 HTML 내용을 문자열로 꺼냄
-    # BeautifulSoup(..., "html.parser") : 그 HTML을 Python이 다루기 쉽게 분석함
 
-    job_title_tag = soup.find("h2")
+    #공고 제목
+    # 사람인 페이지의 title 태그 찾기
+    title_tag = soup.find("title")
 
-    if job_title_tag:
-        job_title = job_title_tag.get_text(strip=True)
+    if title_tag:
+        # title 태그 안의 글자만 가져옴
+        title_text = title_tag.get_text(strip=True)
+
+        # 회사명 추출
+        company_name = title_text.split("]", 1)[0].replace("[", "").strip()
+
+        # 공고 제목 추출
+        # 회사명 부분 제거
+        job_title = title_text.split("] ", 1)[1]
+        # "(D-55) - 사람인" 부분 제거
+        job_title = job_title.rsplit("(D-", 1)[0].strip()
+
     else:
+        company_name = "회사명 없음"
         job_title = "직무명 없음"
 
-    
-    location_text = soup.find(string=lambda text: text and "Seoul, South Korea" in text)
-    # find_all() : 조건에 맞는 모든 요소를 찾음
-    
+    # 근무지역은 아직 사람인 방식으로 수정하지 않았음
+    location = "장소명 없음"
 
-    if location_text:
-        location = location_text.split(" - ")[1]
-        # 문자열을 " - " 기준으로 나눔
-    else:
-        location = "장소명 없음"
-    
-    return job_title, location
+    # 페이지에 잇는 모든 <dt> 찾음
+    dt_tags = soup.find_all("dt")
+
+    for dt in dt_tags:
+        # 그중 글자가 '근무지역'인 걸 찾음
+        if dt.get_text(strip=True) == "근무지역":
+            # 바로 옆에 있는 <dd> 가져와라
+            dd = dt.find_next_sibling("dd")
+
+            if dd:
+                location = dd.get_text(" ", strip=True)
+                location = location.replace("지도보기", "").strip()
+
+            break
+
+    return company_name, job_title, location
 
 
 if __name__ == "__main__":
-    url = "https://openai.com/careers/ai-deployment-engineer-seoul-south-korea/"
-    #접속하고 싶은 웹페이지 주소 저장 변수
+    url = "https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx=54672562"
 
-    job_title, location = get_job_info(url)
+    company_name, job_title, location = get_job_info(url)
 
+    print(company_name)
     print(job_title)
     print(location)
-
